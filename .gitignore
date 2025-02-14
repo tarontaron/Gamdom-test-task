@@ -1,0 +1,11 @@
+# IDE files
+.idea
+.vscode
+
+# Dependencies
+node_modules
+
+# Env files
+.env
+.env.*
+!.env.example

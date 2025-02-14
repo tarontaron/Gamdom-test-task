@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=initial_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Password1*
+    networks:
+      - net
+
+  backend:
+    build: ./backend
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+    restart: always
+    environment:
+      - DB_URL=postgres://root:Password1*@postgres:5432/initial_db
+      - JWT_SECRET=secret
+      - BCRYPT_SALT_ROUNDS=10
+    networks:
+      - net
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:3000/api
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge

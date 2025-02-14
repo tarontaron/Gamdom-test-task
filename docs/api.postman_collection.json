@@ -1,0 +1,1102 @@
+{
+	"info": {
+		"_postman_id": "f228c550-edc1-4436-b684-dea0135f53c6",
+		"name": "api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12329009"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"\r",
+									"if (response.accessToken) {\r",
+									"    pm.collectionVariables.set('ACCESS_TOKEN', response.accessToken);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"Password1*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"Password1*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-GpjSbX7U9izOOLS6+/zL0ijz3JA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:41:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3Mzk0NDY4Njl9.fpYkfGGVph7Ym84vPGxAg0FEAQbIPPq9ywww4OuM-Mc\"\n}"
+						},
+						{
+							"name": "invalid credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Password1*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-Mm37A2ls1bgL0/D8e3MSpDLbow8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:34:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Password1*\",\r\n    \"name\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Password1*\",\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-3rtIzBC13//JJulZlZz2kh+Of9M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:40:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Mzk0NDY4NTd9.O4CiUayGfJOBG8g3c7vug2f_ExZBZ0Jwxilwe9zzAbo\"\n}"
+						},
+						{
+							"name": "user already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"Password1*\",\r\n    \"name\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-iE/qTLv6D6WJqiBAFF/4dxaciBs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:40:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User with email admin@admin.com already exists\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/users/me",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/users/me",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"users",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "236"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ec-o0xICIryT4++WGOzGXhlY+H9p4E\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 16:35:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Admin\",\n    \"email\": \"admin@admin.com\",\n    \"password\": \"$2b$10$Ogf5pKqPb1aRtgvk7.3zbOcCu4GUZHzhbx4/8wqw38lCTNFir2Nlu\",\n    \"role\": \"admin\",\n    \"created_at\": \"2025-02-13T09:10:00.692Z\",\n    \"updated_at\": \"2025-02-13T09:10:00.692Z\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "events",
+			"item": [
+				{
+					"name": "find all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/events",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/events",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "916"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"394-PfzloTRHwvvccecvK8CVZosivlY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2025 20:47:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"event_id\": 1,\n        \"event_name\": \"Glasgow Rangers(Razvan) vs Real Sociedad(Sensei)\",\n        \"odds\": \"1.44\",\n        \"created_at\": \"2025-02-12T16:28:32.398Z\",\n        \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"event_id\": 2,\n        \"event_name\": \"PAOK(Mariner) vs Lazio(Jetli)\",\n        \"odds\": \"2.50\",\n        \"created_at\": \"2025-02-12T16:28:32.398Z\",\n        \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"event_id\": 3,\n        \"event_name\": \"England(Stalker) vs Spain(Zeus)\",\n        \"odds\": \"1.80\",\n        \"created_at\": \"2025-02-12T16:28:32.398Z\",\n        \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"event_id\": 4,\n        \"event_name\": \"Zen Esports vs Nottingham Miedo\",\n        \"odds\": \"1.50\",\n        \"created_at\": \"2025-02-12T16:28:32.398Z\",\n        \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"event_id\": 5,\n        \"event_name\": \"Dallas Mavericks(ARCHITECT) vs Minnesota Timberwolves(CRYPTO)\",\n        \"odds\": \"1.90\",\n        \"created_at\": \"2025-02-12T16:28:32.398Z\",\n        \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n        \"deleted_at\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/events/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "32"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "171"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ab-eJG41Mv8K2hK3XDdURc5gDrEouE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2025 21:02:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"event_id\": 2,\n    \"event_name\": \"PAOK(Mariner) vs Lazio(Jetli)\",\n    \"odds\": \"2.50\",\n    \"created_at\": \"2025-02-12T16:28:32.398Z\",\n    \"updated_at\": \"2025-02-12T16:28:32.398Z\",\n    \"deleted_at\": null\n}"
+						},
+						{
+							"name": "not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "32"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-9L9iRzPPjXCBQfm2pq4GxNDtl54\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Feb 2025 21:08:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event with id 32 not found.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"tesst\",\r\n    \"odds\": 12.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/events",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"tesst\",\r\n    \"odds\": 12.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/events",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-NKMTEbw1LIApUMgau7J1huYuOGw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 12:14:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"event_id\": 11,\n    \"event_name\": \"tesst\",\n    \"odds\": \"12.50\",\n    \"created_at\": \"2025-02-13T08:14:54.131Z\",\n    \"updated_at\": \"2025-02-13T08:14:54.131Z\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "patch by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test name new\", // optional\r\n    \"odds\": 6 // optional\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/events/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test name new\", // optional\r\n    \"odds\": 6 // optional\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-wLPF8qmY0k49F472rxTi7VTtlBE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 12:19:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"event_id\": 6,\n    \"event_name\": \"test name new\",\n    \"odds\": \"6.00\",\n    \"created_at\": \"2025-02-13T08:09:35.179Z\",\n    \"updated_at\": \"2025-02-13T08:19:41.924Z\",\n    \"deleted_at\": null\n}"
+						},
+						{
+							"name": "not found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test name new\", // optional\r\n    \"odds\": 6 // optional\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-qcBKDphsfz2N9iPFWEeOpoTBM5c\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 12:19:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event with id 7 not found.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/events/:id",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 12:16:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/events/:id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-IiD7Px3URAfd2t8c4pmVvdjRlqo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 12:16:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Event with id 11 not found.\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{ACCESS_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
