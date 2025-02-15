@@ -30,3 +30,7 @@ you can import the postman collection from `docs/postman_collection.json`
 2. `cp .env.example .env` fill credentials
 3. `npm install`
 4. `npm run dev`
+
+
+
+note: For system entering use login: admin@admin.com password: Password1*
